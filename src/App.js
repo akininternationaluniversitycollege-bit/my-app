@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 
 // WARNING: Never expose your API key in production frontend code!
-const BLACKBOX_API_KEY = "sk-pf8-gifmpLrlW3OvTfOfjg";
-const BLACKBOX_API_URL = "https://api.blackbox.ai/chat/completions";
+const OPENAI_API_KEY = "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";
+const OPENAI_API_URL = "https://platform.openai.com";
 
 function App() {
   const [messages, setMessages] = useState([
@@ -30,14 +30,14 @@ function App() {
     setIsLoading(true);
 
     try {
-      const response = await fetch(BLACKBOX_API_URL, {
+      const response = await fetch(OPENAI_API_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${BLACKBOX_API_KEY}`,
+          Authorization: `Bearer ${OPENAI_API_KEY}`,
         },
         body: JSON.stringify({
-          model: "blackboxai/openai/gpt-4",
+          model: "openai/gpt-4",
           messages: updatedMessages,
           temperature: 0.5,
           max_tokens: 1024,
@@ -89,10 +89,10 @@ data:${file.type};base64,${base64}`;
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${BLACKBOX_API_KEY}`,
+          Authorization: `Bearer ${OPENAI_API_KEY}`,
         },
         body: JSON.stringify({
-          model: "blackboxai/openai/gpt-4",
+          model: "openai/gpt-4",
           messages: [{ role: "user", content: prompt }],
           temperature: 0.3,
           max_tokens: 1500,
